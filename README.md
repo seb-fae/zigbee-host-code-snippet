@@ -33,6 +33,9 @@ static void setMfgCtune(void)
   emberAfCorePrintln("status 0x%x\n", status);
 }
 ```
+
+### warning: To perform multiple write, you need to use "commander device pageerase --region @userdata" before each write
+
 ## Set a Ctune in NCP CMU register from Host
 
 emberCommandEntryAction("setCtune", setCtune, "u", ""),
@@ -44,6 +47,8 @@ static void setCtune(void)
   emberAfCorePrintln("status 0x%x\n", status);
 }
 ```
+### warning: you must not be on a network to use this command. 
+
 ## Read CTune from Host:
 
 ```c
