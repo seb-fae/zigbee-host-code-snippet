@@ -5,6 +5,7 @@
 ### 1) Add xncp plugin on ncp side
 ### 2) Add this code to Z3Host_callback.c
 
+```c
 #define MAXRSPLEN 16
 
 uint8_t cmd[1] = {1};
@@ -20,9 +21,9 @@ static void sendCustom(void)
   for (uint8_t i = 0; i< rsplen; i++)
 	  emberAfCorePrintln("%x", rsp[i]);
 }
-
+```
 ## Set Manufacturing Ctune in User/Lockbit page from Z3Host
-
+```c
 emberCommandEntryAction("setMfgCtune", setMfgCtune, "u", ""),
 
 static void setMfgCtune(void)
@@ -31,11 +32,11 @@ static void setMfgCtune(void)
   EmberStatus status = ezspSetMfgToken(EZSP_MFG_CTUNE, 2, (uint8_t *) &ctune);
   emberAfCorePrintln("status 0x%x\n", status);
 }
-
+```
 ## Set a Ctune in NCP CMU register from Z3Host
 
 emberCommandEntryAction("setCtune", setCtune, "u", ""),
-
+```c
 static void setCtune(void)
 {
   uint16_t ctune = (uint16_t)emberSignedCommandArgument(0);
@@ -43,7 +44,7 @@ static void setCtune(void)
   EmberStatus status = ezspSetConfigurationValue(EZSP_CONFIG_CTUNE_VALUE, ctune);
   emberAfCorePrintln("status 0x%x\n", status);
 }
-
+```
 ## Read CTune from Z3Host:
 
 ```c
@@ -52,7 +53,9 @@ static void getCtune(void)
 	uint16_t ctune;
 	ezspGetConfigurationValue(EZSP_CONFIG_CTUNE_VALUE, &ctune);
 	emberAfCorePrintln("ctune 0x%x\n", ctune);
+	
 	uint16_t mfgctune;
 	uint8_t res = ezspGetMfgToken(EZSP_MFG_CTUNE, (uint8_t *) &mfgctune);
 	emberAfCorePrintln("ctuneMfg 0x%x\n", mfgctune);
 }
+```
