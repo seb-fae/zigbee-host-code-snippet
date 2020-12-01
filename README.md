@@ -1,4 +1,4 @@
-# zigbee-host-example
+# zigbee-host-examples
 
 ## Send Custom command to NCP:
 
