@@ -1,9 +1,9 @@
 # zigbee-example
 
-#Z3Host: Send Custom command to NCP:
+## Z3Host: Send Custom command to NCP:
 
-#1) Add xncp plugin on ncp side
-#2) Add this code to Z3Host_callback.c
+### 1) Add xncp plugin on ncp side
+### 2) Add this code to Z3Host_callback.c
 
 #define MAXRSPLEN 16
 
@@ -21,7 +21,7 @@ static void sendCustom(void)
 	  emberAfCorePrintln("%x", rsp[i]);
 }
 
-#Set Manufacturing Ctune in User/Lockbit page from Z3Host
+## Set Manufacturing Ctune in User/Lockbit page from Z3Host
 
 emberCommandEntryAction("setMfgCtune", setMfgCtune, "u", ""),
 
@@ -32,7 +32,7 @@ static void setMfgCtune(void)
   emberAfCorePrintln("status 0x%x\n", status);
 }
 
-#Set a Ctune in NCP CMU register from Z3Host
+## Set a Ctune in NCP CMU register from Z3Host
 
 emberCommandEntryAction("setCtune", setCtune, "u", ""),
 
@@ -44,8 +44,9 @@ static void setCtune(void)
   emberAfCorePrintln("status 0x%x\n", status);
 }
 
-#Read CTune from Z3Host:
+## Read CTune from Z3Host:
 
+```c
 static void getCtune(void)
 {
 	uint16_t ctune;
