@@ -7,6 +7,7 @@
 
 ```c
 #define MAXRSPLEN 16
+emberCommandEntryAction("sendCustom", sendCustom, "", ""),
 
 uint8_t cmd[1] = {1};
 uint8_t rsp[MAXRSPLEN];
@@ -34,7 +35,7 @@ static void setMfgCtune(void)
 }
 ```
 
-### warning: To perform multiple write, you need to use "commander device pageerase --region @userdata" before each write
+### warning: To perform consecutive writes, you need to use "commander device pageerase --region @userdata" before each write
 
 ## Set a Ctune in NCP CMU register from Host
 
