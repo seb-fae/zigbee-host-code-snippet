@@ -40,7 +40,6 @@ emberCommandEntryAction("setCtune", setCtune, "u", ""),
 static void setCtune(void)
 {
   uint16_t ctune = (uint16_t)emberSignedCommandArgument(0);
-  emberAfCorePrintln("ctune 0x%x\n", ctune);
   EmberStatus status = ezspSetConfigurationValue(EZSP_CONFIG_CTUNE_VALUE, ctune);
   emberAfCorePrintln("status 0x%x\n", status);
 }
