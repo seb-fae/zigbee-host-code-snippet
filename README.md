@@ -25,11 +25,10 @@ static void sendCustom(void)
 ```
 ## Set Manufacturing Ctune in User/Lockbit page from Host
 ```c
-emberCommandEntryAction("setMfgCtune", setMfgCtune, "u", ""),
 
 static void setMfgCtune(void)
 {
-  uint16_t ctune = (uint8_t)emberSignedCommandArgument(0);
+  uint16_t ctune = 32;
   EmberStatus status = ezspSetMfgToken(EZSP_MFG_CTUNE, 2, (uint8_t *) &ctune);
   emberAfCorePrintln("status 0x%x\n", status);
 }
@@ -39,11 +38,12 @@ static void setMfgCtune(void)
 
 ## Set a Ctune in NCP CMU register from Host
 
-emberCommandEntryAction("setCtune", setCtune, "u", ""),
+
 ```c
+
 static void setCtune(void)
 {
-  uint16_t ctune = (uint16_t)emberSignedCommandArgument(0);
+  uint16_t ctune = 32;
   EmberStatus status = ezspSetConfigurationValue(EZSP_CONFIG_CTUNE_VALUE, ctune);
   emberAfCorePrintln("status 0x%x\n", status);
 }
