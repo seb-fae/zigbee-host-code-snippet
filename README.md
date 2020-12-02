@@ -7,7 +7,6 @@
 
 ```c
 #define MAXRSPLEN 16
-emberCommandEntryAction("sendCustom", sendCustom, "", ""),
 
 uint8_t cmd[1] = {1};
 uint8_t rsp[MAXRSPLEN];
