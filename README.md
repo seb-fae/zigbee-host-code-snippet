@@ -14,11 +14,11 @@ uint8_t rsplen = MAXRSPLEN;
 
 static void sendCustom(void)
 {
-  EmberStatus status;
-  status = ezspCustomFrame(sizeof(cmd), cmd, &rsplen, rsp);
+	EmberStatus status;
+	status = ezspCustomFrame(sizeof(cmd), cmd, &rsplen, rsp);
 
-  emberAfCorePrintln("rsp len %d", rsplen);
-  for (uint8_t i = 0; i< rsplen; i++)
+	emberAfCorePrintln("rsp len %d", rsplen);
+	for (uint8_t i = 0; i< rsplen; i++)
 	  emberAfCorePrintln("%x", rsp[i]);
 }
 ```
@@ -27,9 +27,9 @@ static void sendCustom(void)
 
 static void setMfgCtune(void)
 {
-  uint16_t ctune = 32;
-  EmberStatus status = ezspSetMfgToken(EZSP_MFG_CTUNE, 2, (uint8_t *) &ctune);
-  emberAfCorePrintln("status 0x%x\n", status);
+	uint16_t ctune = 32;
+	EmberStatus status = ezspSetMfgToken(EZSP_MFG_CTUNE, 2, (uint8_t *) &ctune);
+	emberAfCorePrintln("status 0x%x\n", status);
 }
 ```
 
@@ -42,9 +42,9 @@ static void setMfgCtune(void)
 
 static void setCtune(void)
 {
-  uint16_t ctune = 32;
-  EmberStatus status = ezspSetConfigurationValue(EZSP_CONFIG_CTUNE_VALUE, ctune);
-  emberAfCorePrintln("status 0x%x\n", status);
+	uint16_t ctune = 32;
+	EmberStatus status = ezspSetConfigurationValue(EZSP_CONFIG_CTUNE_VALUE, ctune);
+	emberAfCorePrintln("status 0x%x\n", status);
 }
 ```
 ### warning: you must not be on a network to use this command. 
@@ -57,7 +57,7 @@ static void getCtune(void)
 	uint16_t ctune;
 	ezspGetConfigurationValue(EZSP_CONFIG_CTUNE_VALUE, &ctune);
 	emberAfCorePrintln("ctune 0x%x\n", ctune);
-	
+
 	uint16_t mfgctune;
 	uint8_t res = ezspGetMfgToken(EZSP_MFG_CTUNE, (uint8_t *) &mfgctune);
 	emberAfCorePrintln("ctuneMfg 0x%x\n", mfgctune);
