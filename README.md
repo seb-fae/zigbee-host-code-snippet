@@ -2,8 +2,7 @@
 
 ## Send Custom command to NCP:
 
-### 1) Add xncp library plugin to your NCP project
-### 2) Add this code to Z3Host_callback.c
+### 1) Add this code to Z3Host_callback.c
 
 ```c
 #define MAXRSPLEN 16
@@ -20,6 +19,23 @@ static void sendCustom(void)
 	emberAfCorePrintln("rsp len %d", rsplen);
 	for (uint8_t i = 0; i< rsplen; i++)
 	  emberAfCorePrintln("%x", rsp[i]);
+}
+```
+### 2) Add xncp library plugin to your NCP project
+### 3) Enable emberAfPluginXncpIncomingCustomFrameCallback on NCP and implement it
+```c
+EmberStatus emberAfPluginXncpIncomingCustomFrameCallback(uint8_t messageLength,
+                                                         uint8_t *messagePayload,
+                                                         uint8_t *replyPayloadLength,
+                                                         uint8_t *replyPayload)
+{
+  *replyPayloadLength = 4;
+  replyPayload[0] = 1;
+  replyPayload[1] = 2;
+  replyPayload[2] = 3;
+  replyPayload[3] = 4;
+
+  return EMBER_SUCCESS;
 }
 ```
 ## Set Manufacturing Ctune in User/Lockbit page from Host
